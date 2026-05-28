@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 import google.generativeai as genai
 from dotenv import load_dotenv
 import requests
+# pyrefly: ignore [missing-import]
 from streamlit_lottie import st_lottie
 
 load_dotenv()
@@ -30,6 +31,12 @@ def load_lottieurl(url: str):
     return r.json()
 
 st.set_page_config(page_title="Crypto AI Analytics", page_icon="🌌", layout="wide")
+
+# Custom Sidebar Logo
+logo_path = "assets/logo.png"
+if os.path.exists(logo_path):
+    st.sidebar.image(logo_path, use_container_width=True)
+st.sidebar.markdown("<br>", unsafe_allow_html=True)
 
 # Theme Toggle
 st.sidebar.markdown("<div style='font-size: 20px; font-weight: bold; padding-bottom: 5px;'>Theme</div>", unsafe_allow_html=True)
