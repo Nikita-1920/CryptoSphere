@@ -264,14 +264,7 @@ with tab1:
                 st.dataframe(styled_forecast, use_container_width=True)
                 st.download_button("📥 Export Predictions (CSV)", data=forecast_df.to_csv().encode('utf-8'), file_name=f'{selected_coin_name}_predictions.csv', mime='text/csv')
 
-                # Heatmap & Feature Importance
-                st.markdown("<br>", unsafe_allow_html=True)
-                c_heat, c_feat = st.columns(2)
-                with c_heat:
-                    st.plotly_chart(plot_correlation_heatmap(final_df, theme), use_container_width=True)
-                with c_feat:
-                    st.markdown("<h3>Feature Importance</h3>", unsafe_allow_html=True)
-                    st.bar_chart(importance_df.set_index('Feature'))
+
                 
             else:
                 st.warning("Not enough data to train models.")
