@@ -135,6 +135,7 @@ def plot_gauge_chart(score, title, theme="Dark"):
     fig = go.Figure(go.Indicator(
         mode = "gauge+number",
         value = score,
+        number = {'font': {'size': 40}, 'valueformat': '.2f'},
         domain = {'x': [0, 1], 'y': [0, 1]},
         title = {'text': title, 'font': {'size': 22, 'color': '#ffffff' if theme == 'Dark' else '#0f172a'}},
         gauge = {
@@ -314,6 +315,7 @@ def plot_fear_greed_gauge(score, title, theme="Dark"):
     fig = go.Figure(go.Indicator(
         mode = "gauge+number",
         value = score,
+        number = {'font': {'size': 40}, 'valueformat': '.0f'},
         domain = {'x': [0, 1], 'y': [0, 1]},
         title = {'text': title, 'font': {'size': 22, 'color': '#ffffff' if theme == 'Dark' else '#0f172a'}},
         gauge = {
