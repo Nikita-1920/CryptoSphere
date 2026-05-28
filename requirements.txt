@@ -12,3 +12,5 @@ python-dotenv
 beautifulsoup4
 google-generativeai
 bcrypt
+matplotlib
+jinja2
