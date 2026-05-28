@@ -35,8 +35,9 @@ st.set_page_config(page_title="Crypto AI Analytics", page_icon="🌌", layout="w
 # Custom Sidebar Logo
 logo_path = "assets/logo.png"
 if os.path.exists(logo_path):
-    st.sidebar.image(logo_path, use_container_width=True)
-st.sidebar.markdown("<br>", unsafe_allow_html=True)
+    col1, col2, col3 = st.sidebar.columns([1, 2, 1])
+    with col2:
+        st.image(logo_path, use_container_width=True)
 
 # Theme Toggle
 st.sidebar.markdown("<div style='font-size: 20px; font-weight: bold; padding-bottom: 5px;'>Theme</div>", unsafe_allow_html=True)
