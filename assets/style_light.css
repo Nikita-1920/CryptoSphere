@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Base background */
+.stApp {
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+/* Sidebar styling fixes */
+[data-testid="stSidebar"] {
+    background-color: #f1f5f9 !important;
+}
+/* User Account Container Background using marker */
+div[data-testid="stVerticalBlock"]:has(#user-account-container-marker) {
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #cbd5e1 !important;
+}
+[data-testid="stSidebar"] .stMarkdown p,
+[data-testid="stSidebar"] .stMarkdown div,
+[data-testid="stSidebar"] .stMarkdown h1,
+[data-testid="stSidebar"] .stMarkdown h2,
+[data-testid="stSidebar"] .stMarkdown h3,
+[data-testid="stSidebar"] label {
+    color: #1e293b !important;
+}
+
+/* Move heading up and decrease side padding */
+.block-container {
+    padding-top: 2rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+/* Sidebar Tabs styling */
+[data-testid="stSidebar"] [data-baseweb="tab-list"] {
+    background-color: transparent !important;
+    display: flex;
+    justify-content: flex-start;
+}
+[data-testid="stSidebar"] [data-baseweb="tab"] {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 10px !important;
+}
+[data-testid="stSidebar"] [data-baseweb="tab"] p {
+    color: #64748b !important;
+    font-size: 1.1rem !important;
+    font-weight: 600;
+}
+[data-testid="stSidebar"] [data-baseweb="tab"][aria-selected="true"] p {
+    color: #10b981 !important;
+}
+
+/* Main Content Tabs */
+section[data-testid="stMain"] [data-baseweb="tab-list"] {
+    background-color: transparent !important;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: none !important;
+}
+section[data-testid="stMain"] [data-baseweb="tab"] {
+    background-color: #f1f5f9 !important;
+    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+    flex: 1;
+    text-align: center;
+    padding: 10px 0 !important;
+}
+section[data-testid="stMain"] [data-baseweb="tab"][aria-selected="true"] {
+    background-color: #e2e8f0 !important;
+    border-color: #10b981 !important;
+}
+section[data-testid="stMain"] [data-baseweb="tab"] p {
+    color: #0f172a !important;
+    font-size: 1.3rem !important;
+    font-weight: 600;
+}
+section[data-testid="stMain"] [data-baseweb="tab"][aria-selected="true"] p {
+    color: #10b981 !important;
+}
+
+/* Main Dashboard Tab Content Area */
+section[data-testid="stMain"] div[role="tabpanel"],
+section[data-testid="stMain"] div[data-testid="stTabPanel"],
+section[data-testid="stMain"] div[data-baseweb="tab-panel"] {
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 25px !important;
+    margin-top: 15px !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Chatbot Input Contrast */
+[data-testid="stTextInput"] label {
+    color: #1e293b !important;
+}
+[data-testid="stTextInput"] input {
+    color: #1e293b !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+}
+[data-testid="stTextInput"] input::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+/* Glassmorphism containers */
+.glass-container {
+    background: #ffffff;
+    border-radius: 15px;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.glass-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cbd5e1;
+}
+
+/* Metric text */
+.metric-title {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 5px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.metric-value {
+    font-size: 1.5rem; /* Reduced to avoid line breaks */
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.metric-delta.positive {
+    color: #10b981; /* neon green */
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.metric-delta.negative {
+    color: #ef4444; /* neon red */
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.pred-up {
+    color: #10b981 !important;
+}
+.pred-down {
+    color: #ef4444 !important;
+}
+
+/* Streamlit specific overrides */
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+    color: #0f172a !important;
+    font-weight: 700;
+}
+
+/* Hide streamlit header and footer */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9; 
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
+}
+
+/* Sidebar Font Sizes */
+[data-testid="stSidebar"] label p,
+[data-testid="stSidebar"] .stMarkdown p {
+    font-size: 15px !important;
+}
+
+/* Chat Message Styling */
+[data-testid="stChatMessage"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px;
+    color: #1e293b !important;
+}
+[data-testid="stChatMessage"] * {
+    color: #1e293b !important;
+}
+[data-testid="stChatMessage"] .stMarkdown p, 
+[data-testid="stChatMessage"] .stMarkdown li {
+    color: #334155 !important;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Download Button Styling */
+[data-testid="stDownloadButton"] {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+[data-testid="stDownloadButton"] button {
+    font-size: 1.2rem !important;
+    padding: 0.5rem 2rem !important;
+}
+
+[data-testid="stDownloadButton"] button p {
+    font-size: 1.2rem !important;
+}
+
+/* Multi-Select Label */
+div[data-testid="stMultiSelect"] label p {
+    font-size: 1.1rem !important;
+}

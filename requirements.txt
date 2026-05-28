@@ -1,0 +1,14 @@
+streamlit
+pandas
+numpy
+yfinance
+plotly
+scikit-learn
+xgboost
+nltk
+textblob
+requests
+python-dotenv
+beautifulsoup4
+google-generativeai
+bcrypt

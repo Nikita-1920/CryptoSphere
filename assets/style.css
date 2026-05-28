@@ -1,0 +1,266 @@
+/* assets/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Base background */
+.stApp {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    color: #e2e8f0;
+}
+
+/* Sidebar styling fixes */
+[data-testid="stSidebar"] {
+    background-color: #0f172a !important;
+}
+/* User Account Container Background using marker */
+div[data-testid="stVerticalBlock"]:has(#user-account-container-marker) {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+[data-testid="stSidebar"] .stMarkdown p,
+[data-testid="stSidebar"] .stMarkdown div,
+[data-testid="stSidebar"] .stMarkdown h1,
+[data-testid="stSidebar"] .stMarkdown h2,
+[data-testid="stSidebar"] .stMarkdown h3,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] label * {
+    color: #ffffff !important;
+}
+[role="radiogroup"] * {
+    color: #e2e8f0 !important;
+}
+[data-baseweb="select"] * {
+    color: #000000 !important;
+}
+[data-baseweb="popover"] * {
+    color: #000000 !important;
+    background-color: #ffffff;
+}
+[data-testid="stDateInput"] input {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Move heading up and decrease side padding */
+.block-container {
+    padding-top: 2rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+/* Sidebar Tabs styling */
+[data-testid="stSidebar"] [data-baseweb="tab-list"] {
+    background-color: transparent !important;
+    display: flex;
+    justify-content: flex-start;
+}
+[data-testid="stSidebar"] [data-baseweb="tab"] {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 10px !important;
+}
+[data-testid="stSidebar"] [data-baseweb="tab"] p {
+    color: #94a3b8 !important;
+    font-size: 1.1rem !important;
+    font-weight: 600;
+}
+[data-testid="stSidebar"] [data-baseweb="tab"][aria-selected="true"] p {
+    color: #10b981 !important;
+}
+
+/* Main Content Tabs */
+section[data-testid="stMain"] [data-baseweb="tab-list"] {
+    background-color: transparent !important;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: none !important;
+}
+section[data-testid="stMain"] [data-baseweb="tab"] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    flex: 1;
+    text-align: center;
+    padding: 10px 0 !important;
+}
+section[data-testid="stMain"] [data-baseweb="tab"][aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: #10b981 !important;
+}
+section[data-testid="stMain"] [data-baseweb="tab"] p {
+    color: #f8fafc !important;
+    font-size: 1.3rem !important;
+    font-weight: 600;
+}
+section[data-testid="stMain"] [data-baseweb="tab"][aria-selected="true"] p {
+    color: #10b981 !important;
+}
+
+/* Main Dashboard Tab Content Area */
+section[data-testid="stMain"] div[role="tabpanel"],
+section[data-testid="stMain"] div[data-testid="stTabPanel"],
+section[data-testid="stMain"] div[data-baseweb="tab-panel"] {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 25px !important;
+    margin-top: 15px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Chatbot Input Contrast */
+[data-testid="stTextInput"] label {
+    color: #e2e8f0 !important;
+}
+[data-testid="stTextInput"] input {
+    color: #f8fafc !important;
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+}
+[data-testid="stTextInput"] input::placeholder {
+    color: #cbd5e1 !important;
+    opacity: 1 !important;
+}
+
+/* Glassmorphism containers */
+.glass-container {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.glass-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Metric text */
+.metric-title {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-bottom: 5px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.metric-value {
+    font-size: 1.5rem; /* Reduced to avoid line breaks */
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.metric-delta.positive {
+    color: #10b981; /* neon green */
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.metric-delta.negative {
+    color: #ef4444; /* neon red */
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.pred-up {
+    color: #10b981 !important;
+}
+.pred-down {
+    color: #ef4444 !important;
+}
+
+/* Streamlit specific overrides */
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+    color: #f8fafc !important;
+    font-weight: 700;
+}
+
+/* Hide streamlit header and footer */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a; 
+}
+::-webkit-scrollbar-thumb {
+    background: #334155; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569; 
+}
+
+/* Sidebar Font Sizes */
+[data-testid="stSidebar"] label p,
+[data-testid="stSidebar"] .stMarkdown p {
+    font-size: 15px !important;
+}
+
+/* Chat Message Styling */
+[data-testid="stChatMessage"] {
+    background-color: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px;
+    color: #f8fafc !important;
+}
+[data-testid="stChatMessage"] * {
+    color: #f8fafc !important;
+}
+[data-testid="stChatMessage"] .stMarkdown p, 
+[data-testid="stChatMessage"] .stMarkdown li {
+    color: #e2e8f0 !important;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Download Button Styling */
+[data-testid="stDownloadButton"] {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+[data-testid="stDownloadButton"] button {
+    font-size: 1.2rem !important;
+    padding: 0.5rem 2rem !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-testid="stDownloadButton"] button p {
+    font-size: 1.2rem !important;
+    color: #ffffff !important;
+}
+
+/* Multi-Select Label */
+div[data-testid="stMultiSelect"] label p {
+    color: #ffffff !important;
+    font-size: 1.1rem !important;
+}
