@@ -14,3 +14,4 @@ google-generativeai
 bcrypt
 matplotlib
 jinja2
+lxml
