@@ -56,11 +56,11 @@ if not st.session_state.logged_in:
     with tab_login:
         login_user = st.text_input("Username", key="login_user")
         login_pass = st.text_input("Password", type="password", key="login_pass")
-        login_btn = st.button("Login", type="primary", use_container_width=True, config={'displayModeBar': False})
+        login_btn = st.button("Login", type="primary", use_container_width=True)
         
         def toggle_reset():
             st.session_state.show_reset = not st.session_state.get('show_reset', False)
-        st.button("Forgot Password", on_click=toggle_reset, type="primary", use_container_width=True, config={'displayModeBar': False})
+        st.button("Forgot Password", on_click=toggle_reset, type="primary", use_container_width=True)
             
         if login_btn:
             uid, msg = verify_user(login_user, login_pass)
@@ -78,7 +78,7 @@ if not st.session_state.logged_in:
             st.markdown("---")
             res_user = st.text_input("Username for Reset", key="res_user")
             res_pass = st.text_input("New Password", type="password", key="res_pass")
-            if st.button("Reset Password", type="primary", use_container_width=True, config={'displayModeBar': False}):
+            if st.button("Reset Password", type="primary", use_container_width=True):
                 if not res_user or not res_pass:
                     st.error("Username and new password are required.")
                 else:
@@ -93,7 +93,7 @@ if not st.session_state.logged_in:
     with tab_reg:
         reg_user = st.text_input("New Username", key="reg_user")
         reg_pass = st.text_input("New Password", type="password", key="reg_pass")
-        if st.button("Register", type="primary", use_container_width=True, config={'displayModeBar': False}):
+        if st.button("Register", type="primary", use_container_width=True):
             if not reg_user or not reg_pass:
                 st.error("Username and password are required.")
             else:
@@ -270,7 +270,7 @@ with tab1:
                 else:
                     styled_forecast = forecast_df.style.applymap(color_direction, subset=['Direction'])
                     
-                st.dataframe(styled_forecast, use_container_width=True, config={'displayModeBar': False})
+                st.dataframe(styled_forecast, use_container_width=True)
                 st.download_button("📥 Export Predictions (CSV)", data=forecast_df.to_csv().encode('utf-8'), file_name=f'{selected_coin_name}_predictions.csv', mime='text/csv')
 
 
@@ -379,7 +379,7 @@ with tab2:
             )
             col1, col2, col3 = st.columns([1, 1.5, 1])
             with col2:
-                st.download_button("📥 Export Metrics (CSV)", data=metrics_df.to_csv(index=False).encode('utf-8'), file_name='comparison_metrics.csv', mime='text/csv', use_container_width=True, config={'displayModeBar': False})
+                st.download_button("📥 Export Metrics (CSV)", data=metrics_df.to_csv(index=False).encode('utf-8'), file_name='comparison_metrics.csv', mime='text/csv', use_container_width=True)
     else:
         st.warning("Please select at least one coin to compare.")
 
@@ -518,7 +518,7 @@ with tab3:
         # Export Button Bottom Center
         col_ex1, col_ex2, col_ex3 = st.columns([1, 1, 1])
         with col_ex2:
-            st.download_button("📥 Export Portfolio (CSV)", data=eval_df.to_csv(index=False).encode('utf-8'), file_name='portfolio.csv', mime='text/csv', use_container_width=True, config={'displayModeBar': False})
+            st.download_button("📥 Export Portfolio (CSV)", data=eval_df.to_csv(index=False).encode('utf-8'), file_name='portfolio.csv', mime='text/csv', use_container_width=True)
 
 with tab4:
     st.markdown("<h2>💬 AI Chatbot Assistant (Gemini Pro)</h2>", unsafe_allow_html=True)
@@ -583,7 +583,7 @@ with tab4:
             with col1:
                 prompt = st.text_input("Ask about the crypto market...", label_visibility="collapsed", placeholder="Ask about the crypto market...")
             with col2:
-                submit_button = st.form_submit_button("Send 🚀", type="primary", use_container_width=True, config={'displayModeBar': False})
+                submit_button = st.form_submit_button("Send 🚀", type="primary", use_container_width=True)
                 
         if submit_button and prompt:
             # Append user message
@@ -648,7 +648,7 @@ with tab4:
                     
         col_c1, col_c2, col_c3 = st.columns([1, 1, 1])
         with col_c2:
-            if st.button("🗑️ Clear Chat History", type="primary", use_container_width=True, config={'displayModeBar': False}):
+            if st.button("🗑️ Clear Chat History", type="primary", use_container_width=True):
                 if st.session_state.get('logged_in'):
                     clear_chat_history(st.session_state.user_id)
                 st.session_state.messages = []
@@ -673,7 +673,7 @@ with tab5:
             alert_price = st.number_input("Target Price", min_value=0.0, step=10.0)
         with c_alert3:
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("Add Alert", type="primary", use_container_width=True, config={'displayModeBar': False}):
+            if st.button("Add Alert", type="primary", use_container_width=True):
                 if alert_price > 0:
                     st.session_state.active_alerts.append({"coin": alert_coin, "target": alert_price})
                     st.success(f"Alert added for {alert_coin} at {currency_sym}{alert_price:,.2f}")
@@ -761,7 +761,7 @@ with tab6:
         strategy = st.selectbox("Select Strategy", ["Buy & Hold", "MACD Crossover", "RSI Mean Reversion"])
         initial_capital = st.number_input("Initial Capital ($)", min_value=100.0, value=10000.0, step=1000.0)
         transaction_fee = st.number_input("Transaction Fee (%)", min_value=0.0, max_value=5.0, value=0.1, step=0.05) / 100.0
-        run_btn = st.button("▶ Run Backtest", type="primary", use_container_width=True, config={'displayModeBar': False})
+        run_btn = st.button("▶ Run Backtest", type="primary", use_container_width=True)
         
     with col_bt2:
         if run_btn:
