@@ -117,10 +117,12 @@ section[data-testid="stMain"] div[data-baseweb="tab-panel"] {
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
-/* Main Content Labels and Alerts */
+/* Main Content Labels, Alerts, and Expanders */
 section[data-testid="stMain"] label p,
 section[data-testid="stMain"] div[data-testid="stAlert"] p,
-section[data-testid="stMain"] div[data-testid="stAlert"] span {
+section[data-testid="stMain"] div[data-testid="stAlert"] span,
+div[data-testid="stExpander"] summary p,
+div[data-testid="stExpander"] summary span {
     color: #e2e8f0 !important;
 }
 /* Chatbot Input Contrast */
