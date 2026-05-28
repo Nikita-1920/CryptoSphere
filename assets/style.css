@@ -121,8 +121,10 @@ section[data-testid="stMain"] div[data-baseweb="tab-panel"] {
 section[data-testid="stMain"] label p,
 section[data-testid="stMain"] div[data-testid="stAlert"] p,
 section[data-testid="stMain"] div[data-testid="stAlert"] span,
-div[data-testid="stExpander"] summary p,
-div[data-testid="stExpander"] summary span {
+div[data-testid="stExpander"] summary,
+div[data-testid="stExpander"] summary *,
+div[data-testid="stExpander"] summary:hover,
+div[data-testid="stExpander"] summary:hover * {
     color: #e2e8f0 !important;
 }
 /* Chatbot Input Contrast */
