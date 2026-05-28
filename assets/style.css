@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, .metric-value {
     height: 100vh !important;
 }
 [data-testid="stSidebarUserContent"] {
-    padding-top: 2rem !important;
+    padding-top: 0rem !important;
 }
 /* User Account Container Background using marker */
 div[data-testid="stVerticalBlock"]:has(#user-account-container-marker) {
