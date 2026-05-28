@@ -5,6 +5,8 @@ import os
 from datetime import datetime, timedelta
 import google.generativeai as genai
 from dotenv import load_dotenv
+import requests
+from streamlit_lottie import st_lottie
 
 load_dotenv()
 
@@ -19,6 +21,13 @@ from models.predictor import prepare_data, train_and_predict, predict_future_7_d
 
 # Initialize SQLite Database
 init_db()
+
+@st.cache_data
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
 st.set_page_config(page_title="Crypto AI Analytics", page_icon="🌌", layout="wide")
 
@@ -47,11 +56,11 @@ if not st.session_state.logged_in:
     with tab_login:
         login_user = st.text_input("Username", key="login_user")
         login_pass = st.text_input("Password", type="password", key="login_pass")
-        login_btn = st.button("Login", type="primary", use_container_width=True)
+        login_btn = st.button("Login", type="primary", use_container_width=True, config={'displayModeBar': False})
         
         def toggle_reset():
             st.session_state.show_reset = not st.session_state.get('show_reset', False)
-        st.button("Forgot Password", on_click=toggle_reset, type="primary", use_container_width=True)
+        st.button("Forgot Password", on_click=toggle_reset, type="primary", use_container_width=True, config={'displayModeBar': False})
             
         if login_btn:
             uid, msg = verify_user(login_user, login_pass)
@@ -69,7 +78,7 @@ if not st.session_state.logged_in:
             st.markdown("---")
             res_user = st.text_input("Username for Reset", key="res_user")
             res_pass = st.text_input("New Password", type="password", key="res_pass")
-            if st.button("Reset Password", type="primary", use_container_width=True):
+            if st.button("Reset Password", type="primary", use_container_width=True, config={'displayModeBar': False}):
                 if not res_user or not res_pass:
                     st.error("Username and new password are required.")
                 else:
@@ -84,7 +93,7 @@ if not st.session_state.logged_in:
     with tab_reg:
         reg_user = st.text_input("New Username", key="reg_user")
         reg_pass = st.text_input("New Password", type="password", key="reg_pass")
-        if st.button("Register", type="primary", use_container_width=True):
+        if st.button("Register", type="primary", use_container_width=True, config={'displayModeBar': False}):
             if not reg_user or not reg_pass:
                 st.error("Username and password are required.")
             else:
@@ -211,13 +220,13 @@ with tab1:
             if (prev['Close'] < price_target <= latest['Close']) or (prev['Close'] > price_target >= latest['Close']):
                 st.toast(f"🚨 ALERT: {selected_coin_name} crossed your target of {currency_sym}{price_target:,.2f}!")
                 
-        st.plotly_chart(plot_candlestick(market_df, selected_coin_name, theme, show_bb=show_bb, show_macd=show_macd, show_rsi=show_rsi, target_price=price_target), use_container_width=True)
+        st.plotly_chart(plot_candlestick(market_df, selected_coin_name, theme, show_bb=show_bb, show_macd=show_macd, show_rsi=show_rsi, target_price=price_target), use_container_width=True, config={'displayModeBar': False})
 
         col_chart1, col_chart2 = st.columns(2)
         with col_chart1:
-            st.plotly_chart(plot_volatility(market_df, theme), use_container_width=True)
+            st.plotly_chart(plot_volatility(market_df, theme), use_container_width=True, config={'displayModeBar': False})
         with col_chart2:
-            st.plotly_chart(plot_sentiment(sentiment_df, theme), use_container_width=True)
+            st.plotly_chart(plot_sentiment(sentiment_df, theme), use_container_width=True, config={'displayModeBar': False})
 
         # Advanced ML Pipeline
         st.markdown("<br><hr><br>", unsafe_allow_html=True)
@@ -231,7 +240,7 @@ with tab1:
                 # Gauge Chart for Sentiment / Signals
                 col_g1, col_g2 = st.columns(2)
                 with col_g1:
-                    st.plotly_chart(plot_gauge_chart(sentiment_val, "Sentiment Signal", theme), use_container_width=True)
+                    st.plotly_chart(plot_gauge_chart(sentiment_val, "Sentiment Signal", theme), use_container_width=True, config={'displayModeBar': False})
                     
                 with col_g2:
                     pred_class = "pred-up" if best_model_data['Prediction'] == "Up" else "pred-down"
@@ -261,7 +270,7 @@ with tab1:
                 else:
                     styled_forecast = forecast_df.style.applymap(color_direction, subset=['Direction'])
                     
-                st.dataframe(styled_forecast, use_container_width=True)
+                st.dataframe(styled_forecast, use_container_width=True, config={'displayModeBar': False})
                 st.download_button("📥 Export Predictions (CSV)", data=forecast_df.to_csv().encode('utf-8'), file_name=f'{selected_coin_name}_predictions.csv', mime='text/csv')
 
 
@@ -311,7 +320,7 @@ with tab2:
         
         if compare_df_dict:
             # Plotly Line Chart
-            st.plotly_chart(plot_normalized_comparison(compare_df_dict, theme), use_container_width=True)
+            st.plotly_chart(plot_normalized_comparison(compare_df_dict, theme), use_container_width=True, config={'displayModeBar': False})
             
             # Metrics Table
             st.markdown("### Comparison Metrics")
@@ -370,7 +379,7 @@ with tab2:
             )
             col1, col2, col3 = st.columns([1, 1.5, 1])
             with col2:
-                st.download_button("📥 Export Metrics (CSV)", data=metrics_df.to_csv(index=False).encode('utf-8'), file_name='comparison_metrics.csv', mime='text/csv', use_container_width=True)
+                st.download_button("📥 Export Metrics (CSV)", data=metrics_df.to_csv(index=False).encode('utf-8'), file_name='comparison_metrics.csv', mime='text/csv', use_container_width=True, config={'displayModeBar': False})
     else:
         st.warning("Please select at least one coin to compare.")
 
@@ -477,7 +486,7 @@ with tab3:
                 render_metric_card("Annual Volatility", f"{annual_vol*100:.2f}%", "", False, "📈")
                 
         with col_pa2:
-            st.plotly_chart(plot_portfolio_allocation(eval_df, theme), use_container_width=True)
+            st.plotly_chart(plot_portfolio_allocation(eval_df, theme), use_container_width=True, config={'displayModeBar': False})
             
         st.markdown("---")
         
@@ -488,7 +497,7 @@ with tab3:
             st.info("Simulating 1,000 future paths based on historical portfolio volatility.")
             mc_df = run_monte_carlo(eval_df, historical_data_dict, total_value, days=30, simulations=1000)
             if not mc_df.empty:
-                st.plotly_chart(plot_monte_carlo(mc_df, theme), use_container_width=True)
+                st.plotly_chart(plot_monte_carlo(mc_df, theme), use_container_width=True, config={'displayModeBar': False})
                 
         with col_mc2:
             st.markdown("### 🤔 What does this chart mean?")
@@ -509,7 +518,7 @@ with tab3:
         # Export Button Bottom Center
         col_ex1, col_ex2, col_ex3 = st.columns([1, 1, 1])
         with col_ex2:
-            st.download_button("📥 Export Portfolio (CSV)", data=eval_df.to_csv(index=False).encode('utf-8'), file_name='portfolio.csv', mime='text/csv', use_container_width=True)
+            st.download_button("📥 Export Portfolio (CSV)", data=eval_df.to_csv(index=False).encode('utf-8'), file_name='portfolio.csv', mime='text/csv', use_container_width=True, config={'displayModeBar': False})
 
 with tab4:
     st.markdown("<h2>💬 AI Chatbot Assistant (Gemini Pro)</h2>", unsafe_allow_html=True)
@@ -574,7 +583,7 @@ with tab4:
             with col1:
                 prompt = st.text_input("Ask about the crypto market...", label_visibility="collapsed", placeholder="Ask about the crypto market...")
             with col2:
-                submit_button = st.form_submit_button("Send 🚀", type="primary", use_container_width=True)
+                submit_button = st.form_submit_button("Send 🚀", type="primary", use_container_width=True, config={'displayModeBar': False})
                 
         if submit_button and prompt:
             # Append user message
@@ -639,7 +648,7 @@ with tab4:
                     
         col_c1, col_c2, col_c3 = st.columns([1, 1, 1])
         with col_c2:
-            if st.button("🗑️ Clear Chat History", type="primary", use_container_width=True):
+            if st.button("🗑️ Clear Chat History", type="primary", use_container_width=True, config={'displayModeBar': False}):
                 if st.session_state.get('logged_in'):
                     clear_chat_history(st.session_state.user_id)
                 st.session_state.messages = []
@@ -664,7 +673,7 @@ with tab5:
             alert_price = st.number_input("Target Price", min_value=0.0, step=10.0)
         with c_alert3:
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("Add Alert", type="primary", use_container_width=True):
+            if st.button("Add Alert", type="primary", use_container_width=True, config={'displayModeBar': False}):
                 if alert_price > 0:
                     st.session_state.active_alerts.append({"coin": alert_coin, "target": alert_price})
                     st.success(f"Alert added for {alert_coin} at {currency_sym}{alert_price:,.2f}")
@@ -673,7 +682,11 @@ with tab5:
         for idx, alt in enumerate(st.session_state.active_alerts):
             st.markdown(f"**{alt['coin']}** - Target: {currency_sym}{alt['target']:,.2f}")
     else:
-        st.caption("No active alerts.")
+        empty_lottie = load_lottieurl("https://assets9.lottiefiles.com/packages/lf20_0yfsb3a1.json")
+        if empty_lottie:
+            st_lottie(empty_lottie, height=200, key="empty_alerts")
+        else:
+            st.caption("No active alerts.")
         
     st.markdown("---")
     
@@ -732,7 +745,11 @@ with tab5:
                 """
                 st.markdown(html, unsafe_allow_html=True)
     else:
-        st.warning("No recent news found.")
+        news_lottie = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
+        if news_lottie:
+            st_lottie(news_lottie, height=250, key="empty_news")
+        else:
+            st.warning("No recent news found.")
 
 with tab6:
     st.markdown("<h2>📈 Strategy Backtesting Engine</h2>", unsafe_allow_html=True)
@@ -744,7 +761,7 @@ with tab6:
         strategy = st.selectbox("Select Strategy", ["Buy & Hold", "MACD Crossover", "RSI Mean Reversion"])
         initial_capital = st.number_input("Initial Capital ($)", min_value=100.0, value=10000.0, step=1000.0)
         transaction_fee = st.number_input("Transaction Fee (%)", min_value=0.0, max_value=5.0, value=0.1, step=0.05) / 100.0
-        run_btn = st.button("▶ Run Backtest", type="primary", use_container_width=True)
+        run_btn = st.button("▶ Run Backtest", type="primary", use_container_width=True, config={'displayModeBar': False})
         
     with col_bt2:
         if run_btn:
@@ -770,7 +787,7 @@ with tab6:
                             render_metric_card("Total Trades", f"{metrics['Total Trades']}", "", True, "🔄")
                             
                         # Display Chart
-                        st.plotly_chart(plot_equity_curve(equity_curve, theme), use_container_width=True)
+                        st.plotly_chart(plot_equity_curve(equity_curve, theme), use_container_width=True, config={'displayModeBar': False})
                     else:
                         st.error("Failed to generate backtest results.")
                 else:

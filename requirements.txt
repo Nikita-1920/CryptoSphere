@@ -15,3 +15,4 @@ bcrypt
 matplotlib
 jinja2
 lxml
+streamlit-lottie
