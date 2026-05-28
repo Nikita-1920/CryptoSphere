@@ -27,7 +27,8 @@ def fetch_news_sentiment(query="cryptocurrency", days=30):
     """Fetch and analyze news sentiment."""
     try:
         url = f"https://news.google.com/rss/search?q={query}+when:{days}d&hl=en-US&gl=US&ceid=US:en"
-        response = requests.get(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.content, features="xml")
         articles = soup.findAll("item")
         
@@ -75,7 +76,8 @@ def fetch_raw_news(query="cryptocurrency", days=7):
     """Fetch unaggregated news articles for the News Feed tab."""
     try:
         url = f"https://news.google.com/rss/search?q={query}+when:{days}d&hl=en-US&gl=US&ceid=US:en"
-        response = requests.get(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+        response = requests.get(url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.content, features="xml")
         articles = soup.findAll("item")
         
