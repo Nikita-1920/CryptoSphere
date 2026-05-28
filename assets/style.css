@@ -19,6 +19,9 @@ h1, h2, h3, h4, h5, h6, .metric-value {
 [data-testid="stSidebar"] {
     background-color: #0f172a !important;
 }
+[data-testid="stSidebarUserContent"] {
+    padding-top: 1.5rem !important;
+}
 /* User Account Container Background using marker */
 div[data-testid="stVerticalBlock"]:has(#user-account-container-marker) {
     background-color: rgba(255, 255, 255, 0.05) !important;
