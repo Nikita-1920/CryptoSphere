@@ -177,9 +177,13 @@ section[data-testid="stMain"] div[data-baseweb="tab-panel"] {
 }
 
 /* Streamlit specific overrides */
-.stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+div[data-testid="stMarkdownContainer"] h1, 
+div[data-testid="stMarkdownContainer"] h2, 
+div[data-testid="stMarkdownContainer"] h3 {
     color: #0f172a !important;
     font-weight: 700;
+    font-family: 'Outfit', sans-serif !important;
 }
 
 /* Hide streamlit header and footer */
