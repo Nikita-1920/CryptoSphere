@@ -19,6 +19,9 @@ h1, h2, h3, h4, h5, h6, .metric-value {
     background-color: #f1f5f9 !important;
     top: 0px !important;
     height: 100vh !important;
+    border: none !important;
+    border-right: none !important;
+    box-shadow: none !important;
 }
 [data-testid="stSidebarUserContent"] {
     padding-top: 0rem !important;
