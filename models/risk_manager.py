@@ -23,7 +23,7 @@ def _get_portfolio_returns(portfolio_df, historical_data_dict):
         return None
         
     # Combine into a single dataframe and forward fill any missing dates
-    portfolio_history = pd.concat(price_df_list, axis=1).fillna(method='ffill')
+    portfolio_history = pd.concat(price_df_list, axis=1).ffill()
     
     # Calculate total portfolio value over time
     portfolio_total = portfolio_history.sum(axis=1)

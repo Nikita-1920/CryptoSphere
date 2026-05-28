@@ -14,7 +14,7 @@ def prepare_data(market_df, sentiment_df):
     if not sentiment_df.empty:
         sentiment_df.index = pd.to_datetime(sentiment_df.index).normalize()
         df = df.join(sentiment_df[['Sentiment']], how='left')
-        df['Sentiment'] = df['Sentiment'].fillna(method='ffill').fillna(0)
+        df['Sentiment'] = df['Sentiment'].ffill().fillna(0)
     else:
         df['Sentiment'] = 0.0
         
