@@ -736,7 +736,6 @@ with tab5:
 
 with tab6:
     st.markdown("<h2>📈 Strategy Backtesting Engine</h2>", unsafe_allow_html=True)
-    st.info(f"Simulate trading strategies on historical data for {selected_coin_name}.")
     
     col_bt1, col_bt2 = st.columns([1, 3])
     
@@ -745,7 +744,7 @@ with tab6:
         strategy = st.selectbox("Select Strategy", ["Buy & Hold", "MACD Crossover", "RSI Mean Reversion"])
         initial_capital = st.number_input("Initial Capital ($)", min_value=100.0, value=10000.0, step=1000.0)
         transaction_fee = st.number_input("Transaction Fee (%)", min_value=0.0, max_value=5.0, value=0.1, step=0.05) / 100.0
-        run_btn = st.button("▶ Run Backtest", use_container_width=True)
+        run_btn = st.button("▶ Run Backtest", type="primary", use_container_width=True)
         
     with col_bt2:
         if run_btn:
@@ -777,4 +776,4 @@ with tab6:
                 else:
                     st.error("Not enough data to run backtest.")
         else:
-            st.info("Configure your settings and click 'Run Backtest' to see results.")
+            pass

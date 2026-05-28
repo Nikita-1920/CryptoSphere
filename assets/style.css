@@ -113,6 +113,12 @@ section[data-testid="stMain"] div[data-baseweb="tab-panel"] {
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
+/* Main Content Labels and Alerts */
+section[data-testid="stMain"] label p,
+section[data-testid="stMain"] div[data-testid="stAlert"] p,
+section[data-testid="stMain"] div[data-testid="stAlert"] span {
+    color: #e2e8f0 !important;
+}
 /* Chatbot Input Contrast */
 [data-testid="stTextInput"] label {
     color: #e2e8f0 !important;
